@@ -300,4 +300,4 @@ And for the majority of the non-Vine Reviews, the analysis provide a **60% of 5 
 
 
 
-##### Furniture Products - Amazon Vine Analysis Completed by Emmanuel Martinez
+##### Furniture Products - Credit Risk Analysis Completed by Emmanuel Martinez
