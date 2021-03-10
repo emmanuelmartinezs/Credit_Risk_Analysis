@@ -242,41 +242,40 @@ The `EasyEnsembleClassifier` algorithm does the following:
 
 
 ### DELIVERABLE RESULTS:
+Below are the results from the various techniques used to predictive model for High-Risk loans.  
 
-*Using bulleted lists, describe the balanced accuracy scores and the precision and recall scores of all six machine learning models. Use screenshots of your outputs to support your results.*
-Below are the results from the various techniques used to find the more effective predictive model for High-Risk loans.  The key is to get the highest 
-
-**RandomOverSample:**  
-
-![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r1.png)
-
-**SMOTE:**  
-
-![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r2.png)
-
-**ClusterCentroids:**  
-
-![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r3.png)
 
 **SMOTEENN:**  
 
 ![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r4.png)
 
+**SMOTE:**  
+
+![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r2.png)
+
+**RandomOverSample:**  
+
+![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r1.png)
+
+**ClusterCentroids:**  
+
+![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r3.png)
+
+
+**EasyEnsembleClassifier:**  
+
+![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r6.png)
 
 **BalancedRandomForestClassifier:**
 
 ![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r5.png)
 
-**EasyEnsembleClassifier:**  
-![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r6.png)
-
 
 
 ## SUMMARY
-Of all 6 different models, the final one, utlizing the **EasyEnsembleClassifier is the most effective**.  I provides the highest f1-score for both High- and Low-Risk loans, 0.16 and 0.97 respectively.  The precision is poor for all the presented models, however this is the best with 0.09 for the High-Risk group. 
 
-Conversely, the recall is high for both High- and Low-Risk. 0.92 and 0.94 respectively.  In other words, 92% of the time, this model will identify a High-Risk loan correctly.  Therefore, this is the recommended technique.
-
+For all models, utlizing **EasyEnsembleClassifier** is the most effective. Provides a highest Score for all Risk loans.
+The precision is low or none for all the models. In General, above the 90% of the current analysis, utlizing **EasyEnsembleClassifier** will perform a High-Risk loan precision as a great value for the overall analysis. 
 
 
 ##### Credit Risk Analysis Completed by Emmanuel Martinez
