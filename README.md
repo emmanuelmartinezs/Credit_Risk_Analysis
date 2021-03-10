@@ -32,44 +32,41 @@ This new assignment consists of three technical analysis deliverables and a prop
 ### Supervised Machine Learning and Credit Risk
 #### Predicting Credit Risk
 
-**Create a Machine Learning Environment**
+##### Create a Machine Learning Environment
 
 Your new virtual environment will use Python 3.7 and accompanying Anaconda packages. After creating the new virtual environment, you'll install the imbalanced-learn library in that environment.
 
-NOTE
-Consult the imbalanced-learn documentation (Links to an external site.) for additional information about the imbalanced-learn library.
+**NOTE**
+Consult the [imbalanced-learn documentation](https://imbalanced-learn.readthedocs.io/en/stable/) for additional information about the imbalanced-learn library.
 
-Check out the macOS instructions below, or jump to the Windows instructions.
+Check out the macOS instructions below, or go down to the Windows instructions.
 
-macOS Setup
+**macOS Setup**
 Before we create a new environment in macOS, we'll need to update the global conda environment:
 
-If your PythonData environment is activated when you launch the command line, deactivate the environment.
+1. If your PythonData environment is activated when you launch the command line, deactivate the environment.
 
-REWIND
-To deactivate an active environment, type conda deactivate.
+2. Update the global conda environment by typing conda update conda and press Enter.
 
-Update the global conda environment by typing conda update conda and press Enter.
+3. After all the packages are collected, you'll see the prompt Proceed ([y]/n)?. Press the "Y" key (for "yes") and press Enter.
 
-After all the packages are collected, you'll see the prompt Proceed ([y]/n)?. Press the "Y" key (for "yes") and press Enter.
+4. In the command line, type conda create -n mlenv python=3.7 anaconda. The name of your new environment is mlenv.
 
-In the command line, type conda create -n mlenv python=3.7 anaconda. The name of your new environment is mlenv.
+5. After all the packages are collected, you'll see the prompt Proceed ([y]/n)?. Press the "Y" key (for "yes") and press Enter.
 
-After all the packages are collected, you'll see the prompt Proceed ([y]/n)?. Press the "Y" key (for "yes") and press Enter.
+6. Activate your mlenv environment by typing conda activate mlenv and press Enter.
 
-Activate your mlenv environment by typing conda activate mlenv and press Enter.
-
-Check Dependencies for the imbalanced-learn Package
+##### Check Dependencies for the imbalanced-learn Package
 Before we install the imbalanced-learn package, we need to confirm that all of the package dependencies are satisfied in our mlenv environment:
 
-NumPy, version 1.11 or later
-SciPy, version 0.17 or later
-Scikit-learn, version 0.21 or later
+* NumPy, version 1.11 or later
+* SciPy, version 0.17 or later
+* Scikit-learn, version 0.21 or later
 
 
 On the command line, you can check all packages that begin with numpy, scipy, and scikit-learn when you type conda list | grep and press Enter. The grep command will search for patterns of the text numpy in our conda list. For example, when we type conda list | grep numpy and press Enter, the output should be as follows:
 
-data-17-1-1-1-Condal-List-Grep-Numpy.png
+![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/s1.png)
 
 As you can see, our numpy dependency meets the installation requirements for the imbalanced-learn package.
 
@@ -77,37 +74,32 @@ Additionally, you can type python followed by the command argument -c, and then 
 
 Type python -c "import numpy ;print(numpy.__version__)" and then press Enter to see the version of numpy in your mlenv environment.
 
-Windows Setup
+##### Windows Setup
 Before we create a new environment in Windows, we'll need to update the global conda environment:
 
-Launch the Anaconda Prompt, or open your PythonData Anaconda Prompt and deactivate this environment.
+1. Launch the Anaconda Prompt, or open your PythonData Anaconda Prompt and deactivate this environment.
 
-REWIND
-To deactivate an active environment, type conda deactivate.
+2. Update the global conda environment by typing conda update conda and press Enter
 
-Update the global conda environment by typing conda update conda and press Enter
+3. After all the packages are collected, you'll see the prompt Proceed ([y]/n)?. Press the "Y" key (for "yes") and press Enter.
 
-After all the packages are collected, you'll see the prompt Proceed ([y]/n)?. Press the "Y" key (for "yes") and press Enter.
+4. In the command line, type conda create -n mlenv python=3.7 anaconda.
 
-In the command line, type conda create -n mlenv python=3.7 anaconda.
+5. After all the packages are collected, you'll see the prompt Proceed ([y]/n)?. Press the "Y" key (for "yes") and press Enter.
 
-After all the packages are collected, you'll see the prompt Proceed ([y]/n)?. Press the "Y" key (for "yes") and press Enter.
+6. Activate your mlenv environment by typing conda activate mlenv and press Enter, or open your Anaconda Prompt (mlenv).
 
-Activate your mlenv environment by typing conda activate mlenv and press Enter, or open your Anaconda Prompt (mlenv).
-
-Check Dependencies for the imbalanced-learn Package
+##### Check Dependencies for the imbalanced-learn Package
 Before we install the imbalanced-learn package, we need to confirm that all of the package dependencies are satisfied in our mlenv environment:
 
-NumPy, version 1.11 or later
-SciPy, version 0.17 or later
-Scikit-learn, version 0.21 or later
+* NumPy, version 1.11 or later
+* SciPy, version 0.17 or later
+* Scikit-learn, version 0.21 or later
 
 
 In the Anaconda Prompt, you can check all packages that begin with numpy, scipy, and scikit-learn when you type conda list | findstr and press Enter. The findstr command will search for patterns of the text in our conda list. For example, when we type conda list | findstr numpy and press Enter, the output should be as follows:
 
-When you run the conda list | findstr numpy, the output terminal
-shows NumPy version 1.16.5 is
-installed.
+![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/s2.png)
 
 From the output, we can see that our numpy dependency meets the installation requirements for the imbalanced-learn package.
 
@@ -116,26 +108,24 @@ Additionally, you can type python followed by the command argument -c, and then 
 Type python -c "import numpy;print(numpy.__version__)" and press Enter to see the version of numpy in your mlenv environment.
 
 
-Install the imbalanced-learn Package
+##### Install the imbalanced-learn Package
 Now that our dependencies have been met, we can install the imbalanced-learn package in our mlenv environment.
 
 With the mlenv environment activated, either in the Terminal in macOS or in the Anaconda Prompt (mlenv) in Windows, type the following:
 
-conda install -c conda-forge imbalanced-learn
+`conda install -c conda-forge imbalanced-learn`
 
 Then press Enter.
 
-After all the packages are collected, you'll see the prompt Proceed ([y]/n)?. Press the "Y" key (for "yes") and press Enter.
+After all the packages are collected, you'll see the prompt `Proceed` `([y]/n)?`. Press the "Y" key (for "yes") and press Enter.
 
 
-
-Add the Machine Learning Environment to Jupyter Notebook
-To use the mlenv environment we just created in the Jupyter Notebook, we need to add it to the kernels. In the command line, type python -m ipykernel install --user --name mlenv and press Enter.
+##### Add the Machine Learning Environment to Jupyter Notebook
+To use the mlenv environment we just created in the Jupyter Notebook, we need to add it to the kernels. In the command line, type `python -m ipykernel install --user --name mlenv` and press Enter.
 
 To check if the mlenv is installed, launch the Jupyter Notebook and click the "New" dropdown menu:
 
-Click the "New" button to see the mlenv environment in the dropdown
-menu.
+![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/s3.png)
 
 Now we can begin our machine learning journey.
 
