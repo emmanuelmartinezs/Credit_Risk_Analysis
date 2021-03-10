@@ -142,161 +142,150 @@ Now we can begin our machine learning journey.
 > Let's move on!
 
 # Deliverable 1:  
-## Perform ETL on Amazon Product Reviews 
+## Use Resampling Models to Predict Credit Risk 
 ### Deliverable Requirements:
 
-Using the cloud ETL process, you’ll create an AWS RDS database with tables in pgAdmin, pick a dataset from the [Amazon Review datasets](https://s3.amazonaws.com/amazon-reviews-pds/tsv/index.txt), and extract the dataset into a DataFrame. You'll transform the DataFrame into four separate DataFrames that match the table schema in pgAdmin. Then, you'll upload the transformed data into the appropriate tables and run queries in pgAdmin to confirm that the data has been uploaded.
+Using your knowledge of the `imbalanced-learn` and `scikit-learn` libraries, you’ll evaluate three machine learning models by using resampling to determine which is better at predicting credit risk. First, you’ll use the oversampling `RandomOverSampler` and `SMOTE` algorithms, and then you’ll use the undersampling `ClusterCentroids` algorithm. Using these algorithms, you’ll resample the dataset, view the count of the target classes, train a logistic regression classifier, calculate the balanced accuracy score, generate a confusion matrix, and generate a classification report.
 
 > To Deliver. 
 
 **Follow the instructions below:**
 
-1. From the following [Amazon Review datasets](https://s3.amazonaws.com/amazon-reviews-pds/tsv/index.txt), pick a dataset that you would like to analyze. All the datasets have the same schemata, as shown in this image:
+Follow the instructions below and use the `credit_risk_resampling_starter_code.ipynb` file to complete Deliverable 1.
 
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/1.png)
+Open the `credit_risk_resampling_starter_code.ipynb` file, rename it `credit_risk_resampling.ipynb`, and save it to your **Credit_Risk_Analysis** folder.
 
-2. Create a new database with Amazon RDS just as you did in this module.
+Using the information we’ve provided in the starter code, create your training and target variables by completing the following steps:
 
-3. In pgAdmin, create a new database in your Amazon RDS server that you just create.
+* Create the training variables by converting the string values into numerical ones using the `get_dummies()` method.
+* Create the target variables.
+* Check the balance of the target variables.
 
-4. Download the `challenge_schema.sql` file to your computer.
+Next, begin resampling the training data. First, use the oversampling `RandomOverSampler` and `SMOTE` algorithms to resample the data, then use the undersampling `ClusterCentroids` algorithm to resample the data. For each resampling algorithm, do the following:
 
-5. In pgAdmin, run a new query to create the tables for your new database using the code from the `challenge_schema.sql` file.
+* Use the `LogisticRegression` classifier to make predictions and evaluate the model’s performance.
+* Calculate the accuracy score of the model.
+* Generate a confusion matrix.
+* Print out the imbalanced classification report.
 
-- After you run the query, you should have the following four tables in your database: customers_table, products_table, review_id_table, and vine_table.
+Save your `credit_risk_resampling.ipynb` file to your **Credit_Risk_Analysis** folder.
 
-6. Download the `Amazon_Reviews_ETL_starter_code.ipynb` file, then upload the file as a Google Colab Notebook, and rename it `Amazon_Reviews_ETL`.
-
-**NOTE**
-> If you try to open the `Amazon_Reviews_ETL_starter_code.ipynb` with jupyter notebook it will give you an error.
-
-7. First **extract** one of the review datasets, then create a new DataFrame.
-8. Next, follow the steps below to **transform** the dataset into four DataFrames that will match the schema in the pgAdmin tables:
-
-**NOTE**
-> Some datasets have a large number of rows, which will affect the time it takes to complete the following steps.
-
-**The customers_table DataFrame**
-To create the `customers_table`, use the code in the `Amazon_Reviews_ETL_starter_code.ipynb` file and follow the steps below to aggregate the reviews by `customer_id`.
-
-* Use the `groupby()` function on the customer_id column of the DataFrame you created in Step 6.
-* Count all the customer ids using the `agg()` function by chaining it to the `groupby()` function. After you use this function, a new column will be created, `count(customer_id)`.
-* Rename the `count(customer_id)` column using the `withColumnRenamed()` function so it matches the schema for the `customers_table` in pgAdmin.
-* The final `customers_table` DataFrame should look like this:
-
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/2.png)
-
-
-**The products_table DataFrame**
-To create the `products_table`, use the `select()` function to select the `product_id` and `product_title`, then drop duplicates with the `drop_duplicates()` function to retrieve only unique `product_ids`. Refer to the code snippet provided in the `Amazon_Reviews_ETL_starter_code.ipynb` file for assistance.
-
-The final `products_table` DataFrame should look like this:
-
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/3.png)
-
-**The review_id_table DataFrame**
-To create the `review_id_table`, use the `select()` function to select the columns that are in the `review_id_table` in [pgAdmin](https://docs.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository), and convert the review_date column to a date using the code snippet provided in the `Amazon_Reviews_ETL_starter_code.ipynb` file.
-
-The final `review_id_table` DataFrame should look like this:
-
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/4.png)
-
-**The vine_table DataFrame**
-To create the `vine_table`, use the `select()` function to select only the columns that are in the `vine_table` in [pgAdmin](https://docs.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository).
-
-The final `vine_table` DataFrame should look like this:
-
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/5.png)
-
-**Load the DataFrames into pgAdmin**
-1. Make the connection to your AWS RDS instance.
-2. Load the DataFrames that correspond to tables in pgAdmin.
-3. In pgAdmin, run a query to check that the tables have been populated.
-
-**IMPORTANT**
-> Before uploading anything to GitHub be sure to remove all sensitive information such as passwords and connection strings. If you have accidentally done so already see this link (Links to an external site.) for more information.
-
-When you’re done, export your `Amazon_Reviews_ETL` Google Colab Notebook as an ipynb file, and save it to your Amazon_Vine_Analysis GitHub repository.
-
-**NOTE**
-Uploading each DataFrame can take up to 10 minutes or longer, so it’s a good idea to double-check your work before uploading. If you have problems uploading your work, you may have to shut down the pgAdmin server and restart. Alternatively, you may have to delete the tables and create them again, then re-run your `Amazon_Reviews_ETL` Google Colab Notebook.
-
-**IMPORTANT**
-Be sure that you don’t leave your RDS instance up too long. Try to get all your work for Deliverable 1 done in one sitting, then shut down your instance. Please consult the AWS clean-up videos for more information about shutting down your RDS instance. You will not be graded on anything contained strictly in your RDS, so be sure to shut it down.
 
 #### Deliverable 1 Requirements
-You will earn a perfect score for Deliverable 1 by completing all requirements below:
 
-* The `Amazon_Reviews_ETL.ipynb` file does the following:
-    * An Amazon Review dataset is extracted as a DataFrame
-    * The extracted dataset is transformed into four DataFrames with the correct columns
-    * All four DataFrames are loaded into their respective tables in pgAdmin
+For all three algorithms, the following have been completed:
+- An accuracy score for the model is calculated
+- A confusion matrix has been generated
+- An imbalanced classification report has been generated 
 
+
+# Deliverable 2:  
+## Use the SMOTEENN algorithm to Predict Credit Risk 
+### Deliverable Requirements:
+
+Using your knowledge of the `imbalanced-learn` and `scikit-learn` libraries, you’ll use a combinatorial approach of over and undersampling with the `SMOTEENN` algorithm to determine if the results from the combinatorial approach are better at predicting credit risk than the resampling algorithms from Deliverable 1. Using the `SMOTEENN` algorithm, you’ll resample the dataset, view the count of the target classes, train a logistic regression classifier, calculate the balanced accuracy score, generate a confusion matrix, and generate a classification report.
+
+> To Deliver. 
+
+**Follow the instructions below:**
+
+Follow the instructions below and use the information in the `credit_risk_resampling_starter_code.ipynb` file to complete Deliverable 2.
+
+1. Continue using your `credit_risk_resampling.ipynb` file where you have already created your training and target variables.
+2. Using the information we have provided in the starter code, resample the training data using the `SMOTEENN` algorithm.
+3. After the data is resampled, use the `LogisticRegression` classifier to make predictions and evaluate the model’s performance.
+4. Calculate the accuracy score of the model, generate a confusion matrix, and then print out the imbalanced classification report.
+
+Save your `credit_risk_resampling.ipynb` file to your Credit_Risk_Analysis folder.
+
+
+#### Deliverable 2 Requirements
+
+The combinatorial SMOTEENN algorithm does the following:
+- An accuracy score for the model is calculated
+- A confusion matrix has been generated
+- An imbalanced classification report has been generated  
+
+
+# Deliverable 3:  
+## Use Ensemble Classifiers to Predict Credit Risk 
+### Deliverable Requirements:
+
+Using your knowledge of the `imblearn.ensemble` library, you’ll train and compare two different ensemble classifiers, `BalancedRandomForestClassifier` and `EasyEnsembleClassifier`, to predict credit risk and evaluate each model. Using both algorithms, you’ll resample the dataset, view the count of the target classes, train a logistic regression classifier, calculate the balanced accuracy score, generate a confusion matrix, and generate a classification report.
+
+> To Deliver. 
+
+**Follow the instructions below:**
+
+Follow the instructions below and use the information in the `credit_risk_resampling_starter_code.ipynb` file to complete Deliverable 3.
+
+1. Open the `credit_risk_ensemble_starter_code.ipynb` file, rename it `credit_risk_ensemble.ipynb`, and save it to your **Credit_Risk_Analysis** folder.
+2. Using the information we have provided in the starter code, create your training and target variables by completing the following:
+    - Create the training variables by converting the string values into numerical ones using the `get_dummies()` method.
+    - Create the target variables.
+    - Check the balance of the target variables.
+3. Resample the training data using the `BalancedRandomForestClassifier` algorithm with 100 estimators.
+    - Consult the following [Random Forest documentation](https://imbalanced-learn.org/stable/references/generated/imblearn.ensemble.BalancedRandomForestClassifier.html) for an example.
+4. After the data is resampled, use the `LogisticRegression` classifier to make predictions and evaluate the model’s performance.
+5. Calculate the accuracy score of the model, generate a confusion matrix, and then print out the imbalanced classification report.
+6. Print the feature importance sorted in descending order (from most to least important feature), along with the feature score.
+7. Next, resample the training data using the `EasyEnsembleClassifier` algorithm with 100 estimators.
+    - Consult the following [Easy Ensemble documentation](https://imbalanced-learn.org/stable/references/generated/imblearn.ensemble.EasyEnsembleClassifier.html) for an example.
+8. After the data is resampled, use the `LogisticRegression` classifier to make predictions and evaluate the model’s performance.
+9. Calculate the accuracy score of the model, generate a confusion matrix, and then print out the imbalanced classification report.
+
+Save your `credit_risk_ensemble.ipynb` file to your **Credit_Risk_Analysis** folder.
+
+
+#### Deliverable 3 Requirements
+
+The `BalancedRandomForestClassifier` algorithm does the following:
+- An accuracy score for the model is calculated 
+- A confusion matrix has been generated 
+- An imbalanced classification report has been generated 
+- The features are sorted in descending order by feature importance
+
+The `EasyEnsembleClassifier` algorithm does the following:
+- An accuracy score of the model is calculated 
+- A confusion matrix has been generated 
+- An imbalanced classification report has been generated  
 
 
 ### DELIVERABLE RESULTS:
 
-**Helpful Reviews (All) with 5 Star:**  
-For all reviews and "helpful" reviews, **around half of the ratings are 5 Star**, which indicates that the Vine programs tend to give 5 Stars over any other rating.
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/r5.png)
+*Using bulleted lists, describe the balanced accuracy scores and the precision and recall scores of all six machine learning models. Use screenshots of your outputs to support your results.*
+Below are the results from the various techniques used to find the more effective predictive model for High-Risk loans.  The key is to get the highest 
 
-**Percentage of Vine Reviews are 5-star:**  
-For all the Vine Reviews, we found almost the same, a little more lower ratings than 5 Star.
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/r6.png)  
+**RandomOverSample:**  
 
+![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r1.png)
 
-**Percentage of Non-Vine Reviews are 5-star:** 
-In General, the non-Vine reviews is higher of 5 Stars on non-Vine reviews than 5 Star Vine.  
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/r7.png)
+**SMOTE:**  
 
-**Vine Review vs. Non-Vine Review**:   
-For the entire Furniture product review file, the majority has a small Amazon Vine review:   
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/r1.png)
+![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r2.png)
 
-Now, applying the same analysis over smaller dataset, with "helpful" reviews, we faound an average percentage from the Vine program:  
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/r2.png)
+**ClusterCentroids:**  
 
-**5 Star Reviews Vine vs Non-Vine:** 
-For the entire review dataset, we found a small 5 Star reviews from Vine reviews, **around 0.3%**  
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/r3.png)
+![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r3.png)
 
-By Filtering the "helpful" reviews only, we saw and found a light difference; **a lower 1%** of the 5 Star review from Vine.  
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/r4.png)
+**SMOTEENN:**  
+
+![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r4.png)
 
 
-### SUMMARY
+**BalancedRandomForestClassifier:**
+
+![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r5.png)
+
+**EasyEnsembleClassifier:**  
+![d1](https://github.com/emmanuelmartinezs/Credit_Risk_Analysis/blob/main/Resources/Images/r6.png)
 
 
-1. The majority of reviews for Furniture product are almost nothing or lower results from Vine participants: **99.6% are Non-Vine**.  
-2. And overall of all 5 Star reviews are also the same as the Furniture, all are from Vine participants: **99.7% of all 5-star reviews are non-Vine**.
-3. But we need to highlight that not all of the 5 Star reviews are coming from Vine participants.
 
+## SUMMARY
+Of all 6 different models, the final one, utlizing the **EasyEnsembleClassifier is the most effective**.  I provides the highest f1-score for both High- and Low-Risk loans, 0.16 and 0.97 respectively.  The precision is poor for all the presented models, however this is the best with 0.09 for the High-Risk group. 
 
-### RECOMMENDATIONS:
-Below some recommendations to follow:
-
-1. The Amazon Vine Analysis provide a favorable dataset on the 5-star rating.
-
-2. In addition, we found that much data isn't Vine reviews over specific products, that we could minimize the resluts and create a different dataset on just Vine products.
-
-> In addition, 
-
-The analysis gave us that **1/4 are Vine Reviews**
-  
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/r8.png)  
-
-Specific Product provide an average of **57% 5 Star reviews**  
-
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/r9.png)  
-
-For the majority of Vine Reviews, the analysis provide a **49% of 5 Star reviews**   
-
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/r10.png)   
-
-And for the majority of the non-Vine Reviews, the analysis provide a **60% of 5 Star reviews**
-
-![d1](https://github.com/emmanuelmartinezs/Amazon_Vine_Analysis/blob/main/Resources/Images/r11.png) 
-
+Conversely, the recall is high for both High- and Low-Risk. 0.92 and 0.94 respectively.  In other words, 92% of the time, this model will identify a High-Risk loan correctly.  Therefore, this is the recommended technique.
 
 
 
