@@ -289,4 +289,4 @@ Conversely, the recall is high for both High- and Low-Risk. 0.92 and 0.94 respec
 
 
 
-##### Furniture Products - Credit Risk Analysis Completed by Emmanuel Martinez
+##### Credit Risk Analysis Completed by Emmanuel Martinez
